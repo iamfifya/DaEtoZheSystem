@@ -40,36 +40,36 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,12">
-                                <TextBlock Text="VIN" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="VIN" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="VinTextBox" MaxLength="17"/>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,0,0,12">
-                                <TextBlock Text="Гос. номер *" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Гос. номер *" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="PlateTextBox" MaxLength="15"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,12">
-                                <TextBlock Text="Марка *" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Марка *" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="MakeTextBox" MaxLength="50"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,12">
-                                <TextBlock Text="Модель *" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Модель *" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="ModelTextBox" MaxLength="50"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,10,12">
-                                <TextBlock Text="Год выпуска" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Год выпуска" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="YearTextBox"
                                          PreviewTextInput="NumericOnly_PreviewTextInput"/>
                             </StackPanel>
                             <StackPanel Grid.Row="2" Grid.Column="1" Margin="10,0,0,12">
-                                <TextBlock Text="Пробег, км" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Пробег, км" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="MileageTextBox"
                                          PreviewTextInput="NumericOnly_PreviewTextInput"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,10,12">
-                                <TextBlock Text="Цвет" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Цвет" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="ColorTextBox" MaxLength="30"/>
                             </StackPanel>
                             <StackPanel Grid.Row="3" Grid.Column="1" Margin="10,0,0,12">
@@ -83,7 +83,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,0,10,12">
-                                <TextBlock Text="Объём двигателя, л" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Объём двигателя, л" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="EngineVolumeTextBox"
                                          PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                             </StackPanel>
@@ -119,21 +119,21 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,12">
-                                <TextBlock Text="Цена покупки, ₽" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Цена покупки, ₽" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="PurchasePriceTextBox"
                                          PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,0,0,12">
-                                <TextBlock Text="ФИО продавца" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="ФИО продавца" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="SellerNameTextBox" MaxLength="150"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
-                                <TextBlock Text="Телефон продавца" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Телефон продавца" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="SellerPhoneTextBox" MaxLength="20"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
-                                <TextBlock Text="Паспорт (серия + номер)" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Паспорт (серия + номер)" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="SellerPassportTextBox" MaxLength="50"/>
                             </StackPanel>
                         </Grid>
@@ -157,35 +157,35 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,8,12">
-                                <TextBlock Text="Запчасти, ₽" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Запчасти, ₽" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="PartsCostTextBox"
                                          PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="1" Margin="8,0,8,12">
-                                <TextBlock Text="Работы, ₽" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Работы, ₽" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="LaborCostTextBox"
                                          PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="2" Margin="8,0,0,12">
-                                <TextBlock Text="Цена в объявлении, ₽" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Цена в объявлении, ₽" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="ListingPriceTextBox"
                                          PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,0">
-                                <TextBlock Text="Цена продажи, ₽" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Цена продажи, ₽" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="SalePriceTextBox"
                                          PreviewTextInput="DecimalOnly_PreviewTextInput"
                                          TextChanged="Money_TextChanged"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="8,0,0,0">
-                                <TextBlock Text="Маржа (продажа − покупка − ремонт)" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Маржа (продажа − покупка − ремонт)" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBlock x:Name="MarginLabel" Text="0 ₽" FontSize="18" FontWeight="Bold"
                                            Foreground="{DynamicResource AccentGreen}" Margin="0,6,0,0"/>
                             </StackPanel>
                         </Grid>
 
-                        <TextBlock Text="Что сделано / примечания по ремонту" Style="{StaticResource FilterLabelStyle}" Margin="0,12,0,4"/>
+                        <TextBlock Text="Что сделано / примечания по ремонту" Style="{StaticResource FormLabelStyle}" Margin="0,12,0,4"/>
                         <TextBox x:Name="RepairNotesTextBox" MinHeight="60" Padding="10,8"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
 
@@ -197,15 +197,15 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0" Margin="0,0,8,0">
-                                <TextBlock Text="ФИО покупателя" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="ФИО покупателя" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="BuyerNameTextBox" MaxLength="150"/>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Margin="8,0,8,0">
-                                <TextBlock Text="Телефон" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Телефон" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="BuyerPhoneTextBox" MaxLength="20"/>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Margin="8,0,0,0">
-                                <TextBlock Text="Паспорт" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,4"/>
+                                <TextBlock Text="Паспорт" Style="{StaticResource FormLabelStyle}" Margin="0,0,0,4"/>
                                 <TextBox x:Name="BuyerPassportTextBox" MaxLength="50"/>
                             </StackPanel>
                         </Grid>
@@ -218,7 +218,7 @@
                         <TextBlock Text="⚠️ Дефекты (осмотр при приёмке)" Style="{StaticResource HeadingSmallStyle}" Margin="0,0,0,8"/>
                         <TextBox x:Name="DefectsTextBox" MinHeight="70" Padding="10,8"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
-                        <TextBlock Text="Общие заметки" Style="{StaticResource FilterLabelStyle}" Margin="0,12,0,4"/>
+                        <TextBlock Text="Общие заметки" Style="{StaticResource FormLabelStyle}" Margin="0,12,0,4"/>
                         <TextBox x:Name="NotesTextBox" MinHeight="50" Padding="10,8"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
                     </StackPanel>

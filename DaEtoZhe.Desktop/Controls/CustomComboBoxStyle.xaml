@@ -97,7 +97,7 @@
                                    FontSize="{DynamicResource FontSizeSM}"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource TextMuted}"
-                                   Margin="0,0,0,6"/>
+                                   Margin="{StaticResource FormLabelMargin}"/>
 
                         <Grid x:Name="FieldHost" Grid.Row="1">
                             <Border x:Name="PART_MainBorder"

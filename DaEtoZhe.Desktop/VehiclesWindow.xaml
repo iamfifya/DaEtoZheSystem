@@ -31,20 +31,24 @@
         </StackPanel>
 
         <!-- 2. Фильтры и действия -->
-        <Border Grid.Row="1" 
-                Style="{StaticResource CardFlatStyle}" 
-                Margin="0,0,0,16">
-            <Grid VerticalAlignment="Center">
+        <Border Grid.Row="1"
+                Style="{StaticResource CardFlatStyle}"
+                Margin="{StaticResource CardGapMargin}">
+            <!-- Один компактный ряд из трёх колонок. Внутренние StackPanel не растягивают
+                 промежуток между подписью и полем при наличии свободной высоты. -->
+            <Grid VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="240"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Комбобокс со встроенным Header="Статус" -->
-                <controls:CustomComboBox x:Name="StatusFilter" 
+                <!-- Заголовок входит в CustomComboBox и участвует в измерении его высоты. -->
+                <controls:CustomComboBox x:Name="StatusFilter"
                                          Grid.Column="0"
                                          Header="Статус"
+                                         Placeholder="Все статусы"
+                                         VerticalAlignment="Top"
                                          SelectionChanged="StatusFilter_SelectionChanged">
                     <ComboBoxItem Content="Все статусы" Tag=""/>
                     <ComboBoxItem Content="Новый" Tag="0"/>
@@ -58,27 +62,43 @@
                     <ComboBoxItem Content="Списан" Tag="8"/>
                 </controls:CustomComboBox>
 
-                <!-- Поиск -->
-                <StackPanel Grid.Column="1" Margin="16,0" VerticalAlignment="Bottom">
-                    <TextBlock Text="Поиск" Style="{StaticResource FilterLabelStyle}" Margin="0,0,0,6"/>
-                    <TextBox x:Name="SearchBox" 
+                <!-- Поиск использует ту же схему: label + поле с фиксированным зазором. -->
+                <StackPanel Grid.Column="1"
+                            Margin="{StaticResource ControlPaddingLG}"
+                            VerticalAlignment="Top">
+                    <TextBlock Text="Поиск"
+                               Style="{StaticResource FormLabelStyle}"
+                               Margin="{StaticResource FormLabelMargin}"/>
+                    <TextBox x:Name="SearchBox"
+                             Height="{StaticResource ControlHeightMD}"
                              TextChanged="SearchBox_TextChanged"/>
                 </StackPanel>
 
-                <!-- Главные кнопки -->
-                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Bottom">
-                    <Button Content="➕ Добавить авто" 
+                <!-- Панель действий привязана к нижнему краю строки полей. -->
+                <StackPanel Grid.Column="2"
+                            Orientation="Vertical"
+                            VerticalAlignment="Bottom">
+
+                            <TextBlock Text="Действия"
+                                       Style="{StaticResource FormLabelStyle}"
+                                       Margin="{StaticResource FormLabelMargin}"/>
+
+                    <StackPanel Orientation="Horizontal">
+
+                    <Button Content="➕ Добавить авто"
                             Click="AddVehicle_Click"
                             Style="{StaticResource PrimaryBtn}"/>
-                    <Button Content="🔄 Обновить" 
+                    <Button Content="🔄 Обновить"
                             Click="RefreshButton_Click"
                             Style="{StaticResource SecondaryBtn}"/>
-                    <Button Content="✖ Закрыть" 
+                    <Button Content="✖ Закрыть"
                             Click="CloseButton_Click"
                             Style="{StaticResource DangerBtn}"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>
+
 
         <!-- 3. Карточки авто -->
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

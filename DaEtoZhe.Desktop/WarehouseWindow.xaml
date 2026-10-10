@@ -39,6 +39,7 @@
                 <DataGrid x:Name="ItemsGrid" Grid.Row="3" Margin="0,12,0,0"
                           AutoGenerateColumns="False" IsReadOnly="True"
                           SelectionMode="Single" SelectionChanged="ItemsGrid_SelectionChanged"
+                          Style="{DynamicResource AuditDataGridStyle}"
                           Background="{DynamicResource BgMain}"
                           BorderBrush="{DynamicResource BorderColor}"
                           Foreground="{DynamicResource TextMain}"
@@ -53,7 +54,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <WrapPanel Grid.Row="4" Orientation="Horizontal">
+                <WrapPanel Grid.Row="4" Orientation="Horizontal" Margin="{StaticResource FormSectionTopMargin}">
                     <Button Content="➕ Добавить" Style="{StaticResource PrimaryBtn}" Click="AddItem_Click"/>
                     <Button Content="🗄 В архив" Style="{StaticResource DangerBtn}" Click="ArchiveItem_Click"/>
                     <Button Content="🏷 Категории" Style="{StaticResource PrimaryBtn}" Click="Categories_Click"/>

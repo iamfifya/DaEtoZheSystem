@@ -73,7 +73,7 @@
                 <!-- Форма добавления дефекта -->
                 <Border Style="{StaticResource CardFlatStyle}"
                         Margin="{StaticResource CardGapMargin}">
-                    <Grid VerticalAlignment="Center">
+                    <Grid VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="140"/>
@@ -82,37 +82,81 @@
                             <ColumnDefinition Width="110"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" VerticalAlignment="Bottom">
-                            <TextBlock Text="Описание дефекта *" Style="{StaticResource FormLabelStyle}"/>
-                            <TextBox x:Name="DefectDescTextBox" VerticalContentAlignment="Center"/>
+
+                        <!-- Описание дефекта -->
+                        <StackPanel Grid.Column="0"
+                                    VerticalAlignment="Top">
+                            <TextBlock Text="Описание дефекта *"
+                                       Style="{StaticResource FormLabelStyle}"
+                                       Margin="{StaticResource FormLabelMargin}"/>
+                            <TextBox x:Name="DefectDescTextBox"
+                                     Height="{StaticResource ControlHeightMD}"
+                                     VerticalContentAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Margin="{StaticResource HFieldGapMargin}" VerticalAlignment="Bottom">
-                            <controls:CustomComboBox x:Name="AreaCombo" Header="Зона" DisplayMemberPath="Name" SelectedValuePath="Value"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Margin="{StaticResource HFieldGapMargin}" VerticalAlignment="Bottom">
-                            <controls:CustomComboBox x:Name="SeverityCombo" Header="Критичность" DisplayMemberPath="Name" SelectedValuePath="Value"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="3" Margin="{StaticResource HFieldGapMargin}" VerticalAlignment="Bottom">
-                            <TextBlock Text="Цена, ₽" Style="{StaticResource FormLabelStyle}"/>
-                            <TextBox x:Name="DefectCostTextBox" VerticalContentAlignment="Center"
+
+                        <!-- Зона (используем встроенный Header комбобокса без лишней StackPanel) -->
+                        <controls:CustomComboBox x:Name="AreaCombo"
+                                 Grid.Column="1"
+                                 Header="Зона"
+                                 VerticalAlignment="Top"
+                                 Margin="{StaticResource ControlPaddingLG}"
+                                 DisplayMemberPath="Name"
+                                 SelectedValuePath="Value"/>
+
+                        <!-- Критичность -->
+                        <controls:CustomComboBox x:Name="SeverityCombo"
+                                 Grid.Column="2"
+                                 Header="Критичность"
+                                 VerticalAlignment="Top"
+                                 Margin="{StaticResource ControlPaddingLG}"
+                                 DisplayMemberPath="Name"
+                                 SelectedValuePath="Value"/>
+
+                        <!-- Цена -->
+                        <StackPanel Grid.Column="3"
+                                    Margin="{StaticResource ControlPaddingLG}"
+                                    VerticalAlignment="Top">
+                            <TextBlock Text="Цена, ₽"
+                                       Style="{StaticResource FormLabelStyle}"
+                                       Margin="{StaticResource FormLabelMargin}"/>
+                            <TextBox x:Name="DefectCostTextBox"
+                                     Height="{StaticResource ControlHeightMD}"
+                                     VerticalContentAlignment="Center"
                                      PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="4" Margin="{StaticResource HFieldGapMargin}" VerticalAlignment="Bottom">
-                            <TextBlock Text="Нормо-часы" Style="{StaticResource FormLabelStyle}"/>
-                            <TextBox x:Name="DefectHoursTextBox" VerticalContentAlignment="Center"
+
+                        <!-- Нормо-часы -->
+                        <StackPanel Grid.Column="4"
+                                    Margin="{StaticResource ControlPaddingLG}"
+                                    VerticalAlignment="Top">
+                            <TextBlock Text="Нормо-часы"
+                                       Style="{StaticResource FormLabelStyle}"
+                                       Margin="{StaticResource FormLabelMargin}"/>
+                            <TextBox x:Name="DefectHoursTextBox"
+                                     Height="{StaticResource ControlHeightMD}"
+                                     VerticalContentAlignment="Center"
                                      PreviewTextInput="DecimalOnly_PreviewTextInput"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="5" Orientation="Horizontal"
-                                    Margin="{StaticResource InlineButtonGapMargin}"
-                                    VerticalAlignment="Bottom">
-                            <Button x:Name="AddDefectButton" Content="➕"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    Click="AddDefect_Click" ToolTip="Добавить дефект"/>
-                            <Button x:Name="UpdateDefectButton" Content="💾"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    Margin="{StaticResource InlineButtonGapMargin}"
-                                    Click="UpdateDefect_Click"
-                                    ToolTip="Сохранить выбранный дефект" IsEnabled="False"/>
+
+                        <!-- Действия (привязаны к нижнему краю вровень с полями) -->
+                        <StackPanel Grid.Column="5"
+                                    Orientation="Vertical"
+                                    VerticalAlignment="Bottom"
+                                    Margin="{StaticResource ControlPaddingLG}">
+                            <TextBlock Text="Действия"
+                                       Style="{StaticResource FormLabelStyle}"
+                                       Margin="{StaticResource FormLabelMargin}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="AddDefectButton" Content="➕"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Click="AddDefect_Click"
+                                        ToolTip="Добавить дефект"/>
+                                <Button x:Name="UpdateDefectButton" Content="💾"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        Click="UpdateDefect_Click"
+                                        ToolTip="Сохранить выбранный дефект"
+                                        IsEnabled="False"/>
+                            </StackPanel>
                         </StackPanel>
                     </Grid>
                 </Border>
