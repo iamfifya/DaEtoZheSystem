@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:DaEtoZhe.Desktop.Controls">
 
-    <!-- Transparent hit-test-only toggle. Avoids the native WPF ToggleButton chrome -->
     <Style x:Key="CustomComboBoxTransparentToggleStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -60,7 +59,6 @@
     </Style>
 
     <Style TargetType="{x:Type controls:CustomComboBox}">
-        <!-- Убран глобальный Height, чтобы заголовок не сжимал поле ввода -->
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Background" Value="{DynamicResource InputBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource InputBorder}"/>
@@ -72,6 +70,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource ControlHeightMD}"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -105,7 +104,8 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     CornerRadius="{TemplateBinding CornerRadius}"
-                                    Height="{DynamicResource ControlHeightMD}">
+                                    Height="{TemplateBinding Height}"
+                                    MinHeight="{TemplateBinding MinHeight}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -121,14 +121,19 @@
                                                    VerticalAlignment="Center"
                                                    TextTrimming="CharacterEllipsis"
                                                    Margin="{DynamicResource ControlPaddingLG}"
-                                                   Visibility="Visible"/>
+                                                   IsHitTestVisible="False"
+                                                   Visibility="Collapsed"/>
 
                                         <ContentPresenter x:Name="SelectedContent"
-                                                          Content="{TemplateBinding SelectedItem}"
-                                                          ContentTemplate="{TemplateBinding ItemTemplate}"
+                                                          Content="{TemplateBinding SelectionBoxItem}"
+                                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                          ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
                                                           HorizontalAlignment="Left"
                                                           VerticalAlignment="Center"
-                                                          Margin="{DynamicResource ControlPaddingLG}"/>
+                                                          Margin="{DynamicResource ControlPaddingLG}"
+                                                          IsHitTestVisible="False"
+                                                          Visibility="Collapsed"/>
 
                                         <TextBlock x:Name="PlaceholderText"
                                                    Text="{TemplateBinding Placeholder}"
@@ -138,23 +143,26 @@
                                                    VerticalAlignment="Center"
                                                    TextTrimming="CharacterEllipsis"
                                                    Margin="{DynamicResource ControlPaddingLG}"
+                                                   IsHitTestVisible="False"
                                                    Visibility="Collapsed"/>
 
                                         <TextBox x:Name="PART_EditableTextBox"
-                                                 Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Style="{x:Null}"
                                                  Background="Transparent"
                                                  BorderThickness="0"
                                                  Foreground="{TemplateBinding Foreground}"
                                                  FontFamily="{TemplateBinding FontFamily}"
                                                  FontSize="{TemplateBinding FontSize}"
-                                                 Padding="{DynamicResource ControlPaddingLG}"
+                                                 Margin="{DynamicResource ControlPaddingLG}"
+                                                 Padding="0"
                                                  VerticalContentAlignment="Center"
                                                  HorizontalContentAlignment="Left"
                                                  FocusVisualStyle="{x:Null}"
-                                                 Visibility="Collapsed"
                                                  TextWrapping="NoWrap"
                                                  AcceptsReturn="False"
-                                                 IsReadOnly="False"/>
+                                                 IsReadOnly="{TemplateBinding IsReadOnly}"
+                                                 Visibility="Collapsed"/>
+
                                     </Grid>
 
                                     <ToggleButton x:Name="PART_DropDownToggle"
@@ -218,12 +226,23 @@
                         <Trigger Property="Header" Value="{x:Null}">
                             <Setter TargetName="HeaderText" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
+
                         <Trigger Property="Header" Value="">
                             <Setter TargetName="HeaderText" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
+
                         <Trigger Property="IsEditable" Value="True">
                             <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="SelectedText" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="SelectedContent" Property="Visibility" Value="Collapsed"/>
                         </Trigger>
+
+                        <Trigger Property="IsEditable" Value="False">
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="SelectedText" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="SelectedContent" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource TemplatedParent}}" Value="False"/>
@@ -231,6 +250,7 @@
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
                         </MultiDataTrigger>
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource TemplatedParent}}" Value="True"/>
@@ -238,6 +258,7 @@
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
                         </MultiDataTrigger>
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsEditable, RelativeSource={RelativeSource TemplatedParent}}" Value="True"/>
@@ -245,16 +266,12 @@
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
                         </MultiDataTrigger>
-                        <DataTrigger Binding="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Null}">
-                            <Setter TargetName="SelectedContent" Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ItemTemplate, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Null}">
-                            <Setter TargetName="SelectedText" Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
+
                         <Trigger Property="IsKeyboardFocusWithin" Value="True">
                             <Setter TargetName="PART_MainBorder" Property="BorderBrush" Value="{DynamicResource BorderFocused}"/>
                             <Setter TargetName="FocusRing" Property="Opacity" Value="1"/>
                         </Trigger>
+
                         <Trigger Property="IsDropDownOpen" Value="True">
                             <Setter TargetName="PART_MainBorder" Property="BorderBrush" Value="{DynamicResource BorderFocused}"/>
                             <Setter TargetName="FocusRing" Property="Opacity" Value="0.65"/>
@@ -264,6 +281,7 @@
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}}" Value="True"/>
@@ -275,12 +293,14 @@
                             <Setter TargetName="PART_EditableTextBox" Property="Foreground" Value="{DynamicResource InputText}"/>
                             <Setter TargetName="PlaceholderText" Property="Foreground" Value="{DynamicResource InputPlaceholder}"/>
                         </MultiDataTrigger>
+
                         <Trigger Property="IsDropDownOpen" Value="True">
                             <Setter TargetName="PART_MainBorder" Property="Background" Value="{DynamicResource InputBackground}"/>
                             <Setter TargetName="SelectedText" Property="Foreground" Value="{DynamicResource InputText}"/>
                             <Setter TargetName="PART_EditableTextBox" Property="Foreground" Value="{DynamicResource InputText}"/>
                             <Setter TargetName="PlaceholderText" Property="Foreground" Value="{DynamicResource InputPlaceholder}"/>
                         </Trigger>
+
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="PART_MainBorder" Property="Background" Value="{DynamicResource BgDisabled}"/>
                             <Setter TargetName="PART_MainBorder" Property="BorderBrush" Value="{DynamicResource BorderDisabled}"/>
